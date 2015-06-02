@@ -11,5 +11,6 @@ setup(
     packages=['histogram'],
     install_requires=[
         'numpy',
+        'matplotlib',
     ],
 )

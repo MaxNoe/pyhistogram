@@ -1,4 +1,5 @@
 import numpy as np
+import matplotlib.pyplot as plt
 
 class Histogram():
     def __init__(self, bins, limits=None):
@@ -20,6 +21,9 @@ class Histogram():
         self.n_overflow = 0
 
         self.bin_width = np.diff(self.bin_edges)
+        if np.all(self.bin_width == self.bin_width[0]):
+            self.bin_width = self.bin_width[0]
+
 
         self.bin_centers = self.bin_edges[:-1] + 0.5 * self.bin_width
 
@@ -32,3 +36,25 @@ class Histogram():
 
         self.n_underflow += np.sum(data < self.limits[0])
         self.n_overflow += np.sum(data > self.limits[1])
+
+    def plot(self, kind='step', ax=None, **kwargs):
+
+        if ax is None:
+            ax = plt.gca()
+
+        if kind == 'step':
+            px = np.repeat(self.bin_edges, 2)
+            py = np.hstack([[0], np.repeat(self.entries, 2), [0]])
+
+            ax.plot(px, py, '-', **kwargs)
+
+        if kind == 'bar':
+            ax.bar(
+                self.bin_centers,
+                self.entries,
+                self.bin_width,
+                align='center',
+                **kwargs
+            )
+
+        plt.draw_if_interactive()

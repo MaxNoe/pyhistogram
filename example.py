@@ -15,21 +15,7 @@ print(hist2.n_entries)
 print(hist2.n_underflow)
 print(hist2.n_overflow)
 
-plt.bar(
-    hist1.bin_centers,
-    hist1.entries,
-    hist1.bin_width,
-    align='center',
-    lw=0,
-    alpha=0.4,
-)
-plt.bar(
-    hist2.bin_centers,
-    hist2.entries,
-    hist2.bin_width,
-    align='center',
-    lw=0,
-    alpha=0.4,
-    color='red',
-)
+hist1.plot()
+hist2.plot(kind='bar', alpha=0.3)
+plt.xlim(-0.1, 10.1)
 plt.show()
