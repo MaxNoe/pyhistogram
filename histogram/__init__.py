@@ -8,9 +8,6 @@ class Histogram():
     A 1D Histogram that can be filled and stores some statistics
     """
     def __init__(self, bins, limits=None, include_all=False):
-        """
-        """
-
         if np.isscalar(bins):
             if limits is None:
                 raise ValueError(
@@ -19,7 +16,7 @@ class Histogram():
                 )
             self.n_bins = bins
             self.bin_edges = np.linspace(limits[0], limits[1], bins+1)
-            self.limits = limits
+            self.limits = tuple(limits)
         else:
             self.n_bins = len(bins) - 1
             self.bin_edges = bins
