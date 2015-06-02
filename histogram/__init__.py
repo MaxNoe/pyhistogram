@@ -11,7 +11,7 @@ class Histogram():
         if np.isscalar(bins):
             if limits is None:
                 raise ValueError(
-                    'If you supply the number of bins'
+                    'If you supply the number of bins '
                     'you need to supply limits'
                 )
             self.n_bins = bins
